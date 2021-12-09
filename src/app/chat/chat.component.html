@@ -1,0 +1,24 @@
+<div class="chat">
+  <div class="conversations">
+    <ul>
+      <li *ngFor="let conversation of conversations">
+        <app-conversation
+          (click)="selectConversation(conversation)"
+          [owner]="conversation.owner"
+          [photoURL]="conversation.photoURL"
+          [lastMessageDate]="conversation.lastMessageDate"
+        ></app-conversation>
+      </li>
+    </ul>
+  </div>
+  <div class="conversation">
+    <div *ngIf="selectedConversation; else elseConversation">
+      <app-write-field [conversation]="selectedConversation"></app-write-field>
+    </div>
+    <ng-template #elseConversation>
+      <div class="no-conversation">
+        <span>No conversation selected</span>
+      </div>
+    </ng-template>
+  </div>
+</div>
